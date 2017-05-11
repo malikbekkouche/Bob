@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Bob</string>
+    <string name="by">name : </string>
+    <string name="moist">moist : </string>
+    <string name="temp">temp : </string>
+    <string name="light">light : </string>
+    <string name="welcome">Welcome </string>
+    <string name="last">last picture taken</string>
+</resources>
