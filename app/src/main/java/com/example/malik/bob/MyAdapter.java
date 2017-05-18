@@ -1,7 +1,9 @@
 package com.example.malik.bob;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public OrderedRealmCollection<Moment> list;
     public Context mContext;
     private final View.OnClickListener mOnClickListener = new TimeClickListener();
+    private final View.OnLongClickListener mOnLongClickListener = new DetailsClickListener();
     public MyAdapter(OrderedRealmCollection<Moment> a,Context c){
         list=a;
         mContext=c;
@@ -36,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View view=li.inflate(R.layout.moment_item,parent,false);
 
         view.setOnClickListener(mOnClickListener);
+        view.setOnLongClickListener(mOnLongClickListener);
         return new MyViewHolder(view);
     }
 
@@ -93,6 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             imageView.setImageBitmap(ma.byteToBitmap(item.getPhoto()));
             toast.setView(imageView);
             toast.show();
+
            /* toast.setView(secondView);
             ImageView imageView=(ImageView)ma.findViewById(R.id.imageToast);
             imageView.setImageBitmap(ma.byteToBitmap(item.getPhoto()));
@@ -107,5 +112,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         }
 
+    }
+
+    public class DetailsClickListener implements View.OnLongClickListener {
+
+        @Override
+        public boolean onLongClick(View v) {
+            MainActivity ma=(MainActivity)mContext;
+            int itemPosition =ma.rv.getChildLayoutPosition(v);
+            Moment item = list.get(itemPosition);
+            Toast.makeText(ma,item.getDate(),Toast.LENGTH_SHORT).show();
+            //*Bundle b=new Bundle();
+
+            return true;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.malik.bob;
 
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -7,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by malik on 26-04-2017.
  */
 
-public class Moment extends RealmObject {
+public class Moment extends RealmObject implements Serializable{
     public long getId() {
         return id;
     }

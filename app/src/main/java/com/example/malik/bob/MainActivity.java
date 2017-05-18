@@ -51,23 +51,10 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpRealmSync();
+        momentsDB.setMa(this);
+        //only when needed
+        //momentsDB.deleteAll();
 
-        name=(EditText)findViewById(R.id.your_name);
-        mImageButton=(ImageButton)findViewById(R.id.photo);
-        mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
-
-        momentsDB=MomentsDB.get();
-
-        rv = (RecyclerView) findViewById(R.id.list);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter=new MyAdapter(momentsDB.getThingsDBReversed(),this);
-
-        rv.setAdapter(adapter);
 
 
 
@@ -97,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
 
                 Moment m = new Moment(new Date().toString(), name.getText().toString(), c.getMoist(), c.getLight(), c.getTemp());
                 m.setPhoto(photo);
-                momentsDB.addMoment(m);
+                long id=momentsDB.addMoment(m);
+                m.setId(id);
                 adapter.notifyDataSetChanged();
             } catch (InterruptedException e) {
                 Toast.makeText(this, "Couldn't connect to Bob. :(", Toast.LENGTH_SHORT).show();
@@ -144,8 +132,28 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
     private void setupSync(SyncUser user) {
         SyncConfiguration defaultConfig = new SyncConfiguration.Builder(user, REALM_URL).build();
         Realm.setDefaultConfiguration(defaultConfig);
-        //setUpUI();
+        setUpUI();
         Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show();
+    }
+
+    public void setUpUI(){
+        name=(EditText)findViewById(R.id.your_name);
+        mImageButton=(ImageButton)findViewById(R.id.photo);
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
+
+        momentsDB=MomentsDB.get();
+
+        rv = (RecyclerView) findViewById(R.id.list);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter=new MyAdapter(momentsDB.getThingsDBReversed(),this);
+
+        rv.setAdapter(adapter);
+
     }
 
 
