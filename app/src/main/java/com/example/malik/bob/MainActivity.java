@@ -11,7 +11,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.malik.bob.DB.MomentsDB;
+import com.example.malik.bob.Objects.Chirp;
+import com.example.malik.bob.Objects.Moment;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
@@ -30,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageButton mImageButton;
     MyAdapter adapter;
-    EditText name;
+    TextView name;
+    String namae;
 
     // NEVER put username/password in a real app !!!!!
     private static final String USERNAME= "marha@itu.dk";
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
         setContentView(R.layout.activity_main);
         setUpRealmSync();
         momentsDB.setMa(this);
+
         //only when needed
         //momentsDB.deleteAll();
 
@@ -137,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
     }
 
     public void setUpUI(){
-        name=(EditText)findViewById(R.id.your_name);
+        name=(TextView)findViewById(R.id.your_name);
         mImageButton=(ImageButton)findViewById(R.id.photo);
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
         adapter=new MyAdapter(momentsDB.getThingsDBReversed(),this);
 
         rv.setAdapter(adapter);
+        Intent intent=getIntent();
+        namae=intent.getStringExtra("name");
+        name.setText(namae);
 
     }
 

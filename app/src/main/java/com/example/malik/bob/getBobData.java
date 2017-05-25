@@ -1,13 +1,12 @@
 package com.example.malik.bob;
 
-import android.app.LauncherActivity;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import com.example.malik.bob.Objects.Chirp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,15 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.Authenticator;
 import java.net.HttpURLConnection;
-import java.net.PasswordAuthentication;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by malik on 05-05-2017.

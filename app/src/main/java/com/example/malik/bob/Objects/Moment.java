@@ -1,4 +1,4 @@
-package com.example.malik.bob;
+package com.example.malik.bob.Objects;
 
 import java.io.Serializable;
 

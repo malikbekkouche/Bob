@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.malik.bob.DB.MomentsDB;
+import com.example.malik.bob.Objects.Moment;
+
 public class DetailsActivity extends AppCompatActivity {
     TextView date,name,light,temp,moist;
     MomentsDB momentsDB;
