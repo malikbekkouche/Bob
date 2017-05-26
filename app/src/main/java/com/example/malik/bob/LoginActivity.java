@@ -18,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     UserDB userDb;
     TextView newUser;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

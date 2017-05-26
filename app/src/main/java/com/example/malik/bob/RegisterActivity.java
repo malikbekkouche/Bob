@@ -17,6 +17,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button bouton;
     UserDB userDB;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

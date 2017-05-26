@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements SyncUser.Callback
         SyncConfiguration defaultConfig = new SyncConfiguration.Builder(user, REALM_URL).build();
         Realm.setDefaultConfiguration(defaultConfig);
         setUpUI();
-        Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show();
     }
 
     public void setUpUI(){
